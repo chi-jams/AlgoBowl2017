@@ -1,25 +1,21 @@
-
+from firstPass import firstPass
 fin = open( 'testInput.txt', 'r' )
 
 numTasks = eval( fin.readline() )
 numMachines = eval( fin.readline() )
 
-print( numTasks )
-print( numMachines )
-
-tasks = fin.readline()
-tasks = tasks.split( ' ' )
-for i in range( len( tasks ) ):
-    tasks[i] = int( tasks[i] )
-
+tasks = [int(t) for t in fin.readline().split( ' ' )]
 print( tasks )
+tasks.sort()
 
-machSpeeds = fin.readline()
-machSpeeds = machSpeeds.split( ' ' )
-for i in range( len( machSpeeds ) ):
-    machSpeeds[i] = int( machSpeeds[i] )
-
+machSpeeds = [int(m) for m in fin.readline().split( ' ' ) ]
+machSpeeds.sort()
 print( machSpeeds )
-
-
 fin.close()
+
+
+# INSERT FIRST PASS HERE
+firstPass(tasks,machSpeeds)
+# INSERT SECOND PASS HERE
+
+# INSERT CALC SPEED
