@@ -4,13 +4,15 @@ def firstPass( tasks, machSpeeds ):
 
     idealMachWeights = [w * avgWeight for w in machSpeeds]
 
-    machSpeeds2 = [{"max_runtime" : w, "tasks" : []} for w in idealMachWeights]
+    machines = [{'max_runtime' : w, 'tasks' : [], 'runtime' : 0} for w in idealMachWeights]
 
     for i in reversed(range(len(machSpeeds))):
         if i == 0:
-            machSpeeds2[i]['tasks'] = tasks
+            machines[i]['tasks'] = tasks
         else:
-            while sum( machSpeeds2[i]['tasks'] ) + tasks[-1] < machSpeeds2[i]['max_runtime']:
-                machSpeeds2[i]['tasks'].append(tasks.pop())
+            while machines[i]['runtime'] + tasks[-1] < machines[i]['max_runtime']:
+                t_task = tasks.pop()
+                machines[i]['tasks'].append(t_task)
+                machines[i]['runtime'] += t_task
 
-    print(machSpeeds2)
+    return machines

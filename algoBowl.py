@@ -15,7 +15,7 @@ fin.close()
 
 
 # INSERT FIRST PASS HERE
-firstPass(tasks,machSpeeds)
+print(firstPass(tasks,machSpeeds))
 # INSERT SECOND PASS HERE
 
 # INSERT CALC SPEED
