@@ -7,15 +7,27 @@ fin = open( inputFile, 'r' )
 numTasks = eval( fin.readline() )
 numMachines = eval( fin.readline() )
 
-tasks = [int(t) for t in fin.readline().split( ' ' )]
+if numTasks > 1000:
+    print( "Error! Too many tasks! " + str( numTasks ) )
+if numMachines > 50:
+    print( "Error! Too many machines! " + str( numMachines ) )
+
+tasks = [int(t) for t in fin.readline().rstrip().split( ' ' )]
 tasksIndex = tasks[:]
 #print( tasks )
 tasks.sort()
+
+if len( tasksIndex ) != numTasks:
+    print( "Error! Number of tasks not equal to actual number!" )
 
 machSpeeds = [int(m) for m in fin.readline().split( ' ' ) ]
 machSpeedsIndex = machSpeeds[:]
 machSpeeds.sort()
 #print( machSpeeds )
+
+if len( machSpeedsIndex ) != numMachines :
+    print( "Error! Number of machines not equal to actual number!" )
+
 fin.close()
 
 

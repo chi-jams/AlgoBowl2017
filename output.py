@@ -1,6 +1,6 @@
 
 def output( inputFile, machines, tasksIndex, machSpeedsIndex ):
-    fout = open( inputFile.replace( 'Input', 'Output' ), 'w' )
+    fout = open( inputFile.replace( '.txt', 'Out.txt' ), 'w' )
 
     runSpeeds = [ machine['runtime']/machine['speed'] for machine in machines ]
     print( max( runSpeeds ) )
