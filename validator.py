@@ -1,39 +1,56 @@
 
-machineFile = open( 'testInput.txt', 'r' )
+def validate( problem, solution ):
+    machineFile = open( problem, 'r' )
+    resultsFile = open( solution, 'r' )
 
-numTasks = eval( machineFile.readline() )
-numMachines = eval( machineFile.readline() )
+    numTasks = eval( machineFile.readline() )
+    numMachines = eval( machineFile.readline() )
 
-tasks = [int(t) for t in machineFile.readline().rstrip().split( ' ' )]
-machSpeeds = [int(m) for m in machineFile.readline().split( ' ' ) ]
+    tasks = [int(t) for t in machineFile.readline().rstrip().split( ' ' )]
+    machSpeeds = [int(m) for m in machineFile.readline().split( ' ' ) ]
 
-machineFile.close()
+    machineFile.close()
 
-resultsFile = open( 'testInputOut.txt', 'r' )
+    resultTime = eval( resultsFile.readline() )
 
-resultTime = eval( resultsFile.readline() )
-print( resultTime )
+    machLoads = []
+    for i in range( 0, numMachines ):
+        resultLine =  resultsFile.readline().rstrip().split( ' ' )
+        if resultLine == ['']:
+            machLoads.append( [0] )
+        else:
+            machLoads.append( [int(t) for t in resultLine ] )
+    resultsFile.close()
 
-machLoads = []
-for i in range( 0, numMachines ):
-    resultLine =  resultsFile.readline().rstrip().split( ' ' )
-    if resultLine == ['']:
-        machLoads.append( [0] )
+    machTimes = []
+
+    # Calculate the load on each machine
+    # and get the run time by dividing by the machine speed
+    for i, load in enumerate( machLoads ):
+        totalLoad = 0
+        for task in load:
+            totalLoad += tasks[task - 1]
+        machTimes.append( totalLoad / machSpeeds[i] )
+
+    timeWasted = 0
+    maxTime = max( machTimes )
+    for time in machTimes:
+        timeWasted += maxTime - time
+    print( str( timeWasted ) + " clock cycles wasted" )
+
+    targetEfficiency = 0
+    idealUnit = sum( tasks ) / sum( machSpeeds )
+
+    idealLoads = [ idealUnit * speed for speed in machSpeeds ]
+    for i in range( 0, len( idealLoads ) ):
+        #print( idealLoads[i], machTimes[i] * machSpeeds[i] )
+        targetEfficiency += abs( idealLoads[i] - ( machTimes[i] * machSpeeds[i] ) )
+    print( str( targetEfficiency ) + " cycles away from theoretical optimal" )
+
+
+    if( max( machTimes ) == resultTime ):
+        print( "Output is valid" )
     else:
-        machLoads.append( [int(t) for t in resultLine ] )
-print( machLoads )
+        print( "Output is invalid!" )
 
-machTimes = []
-
-# Calculate the load on each machine
-# and get the run time by dividing by the machine speed
-for i, load in enumerate( machLoads ):
-    totalLoad = 0
-    for task in load:
-        totalLoad += tasks[task - 1]
-    machTimes.append( totalLoad / machSpeeds[i] )
-
-if( max( machTimes ) == resultTime ):
-    print( "Output is valid" )
-else:
-    print( "Output is invalid!" )
+validate( 'compInputs.txt', 'compInputsOut.txt' )

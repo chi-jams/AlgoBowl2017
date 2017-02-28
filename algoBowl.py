@@ -1,7 +1,8 @@
 from firstPass import firstPass
 from output import output
+from validator import validate
 
-inputFile = 'testInput.txt'
+inputFile = 'compInputs.txt'
 fin = open( inputFile, 'r' )
 
 numTasks = eval( fin.readline() )
@@ -37,3 +38,6 @@ machines = firstPass(tasks,machSpeeds)
 
 # INSERT CALC SPEED
 output( inputFile, machines, tasksIndex, machSpeedsIndex )
+
+# VALIDATE OUR OWN OUTPUT
+validate( inputFile, inputFile.replace( '.txt', 'Out.txt' ) )
