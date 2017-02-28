@@ -2,7 +2,7 @@ from firstPass import firstPass
 from output import output
 from validator import validate
 
-inputFile = 'compInputs.txt'
+inputFile = 'inputs/input_group23.txt'
 fin = open( inputFile, 'r' )
 
 numTasks = eval( fin.readline() )
@@ -21,7 +21,7 @@ tasks.sort()
 if len( tasksIndex ) != numTasks:
     print( "Error! Number of tasks not equal to actual number!" )
 
-machSpeeds = [int(m) for m in fin.readline().split( ' ' ) ]
+machSpeeds = [int(m) for m in fin.readline().rstrip().split( ' ' ) ]
 machSpeedsIndex = machSpeeds[:]
 machSpeeds.sort()
 #print( machSpeeds )

@@ -20,6 +20,7 @@ def output( inputFile, machines, tasksIndex, machSpeedsIndex ):
 
         for task in machines[machineIndex]['tasks']:
             taskIndex = str( tasksIndex.index( task ) + 1 )
+            tasksIndex[ int( taskIndex ) - 1 ] = -1
             print( taskIndex, end = ' ' )
             fout.write( taskIndex + ' ' )
         print()

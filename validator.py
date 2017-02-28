@@ -7,7 +7,7 @@ def validate( problem, solution ):
     numMachines = eval( machineFile.readline() )
 
     tasks = [int(t) for t in machineFile.readline().rstrip().split( ' ' )]
-    machSpeeds = [int(m) for m in machineFile.readline().split( ' ' ) ]
+    machSpeeds = [int(m) for m in machineFile.readline().rstrip().split( ' ' ) ]
 
     machineFile.close()
 
@@ -41,6 +41,7 @@ def validate( problem, solution ):
     targetEfficiency = 0
     idealUnit = sum( tasks ) / sum( machSpeeds )
 
+    print( 'Toal task weight: ' + str( sum( tasks ) ) )
     idealLoads = [ idealUnit * speed for speed in machSpeeds ]
     for i in range( 0, len( idealLoads ) ):
         #print( idealLoads[i], machTimes[i] * machSpeeds[i] )
@@ -53,4 +54,4 @@ def validate( problem, solution ):
     else:
         print( "Output is invalid!" )
 
-validate( 'compInputs.txt', 'compInputsOut.txt' )
+#validate( 'compInputs.txt', 'compInputsOut.txt' )
