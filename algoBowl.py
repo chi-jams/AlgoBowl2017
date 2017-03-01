@@ -75,6 +75,9 @@ def theAlgorithm(inFileName, outFileName):
 		fout.write(str(max(runSpeeds)) + '\n')
 
 		machines.sort(key = lambda m: m['mach_index'])
-		[fout.write(' '.join([str(t['runtime']) for t in m['task_indexes']]) + '\n') for m in machines]
+		[fout.write(' '.join([str(t['index'] + 1) for t in m['tasks']]) + '\n') for m in machines]
 
 	#validate(inFileName, outFileName)
+
+
+theAlgorithm('inputs/input_group1.txt', 'pleaseDearGodWork.txt')
