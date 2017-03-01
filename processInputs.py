@@ -4,5 +4,5 @@ import os
 
 for inputFile in glob('inputs/*.txt'):
 	dirname, filename = os.path.split(inputFile)
-	outputFile = 'outputs/output_' + filename.split('_')[-1]
+	outputFile = 'tests/output_' + filename.split('_')[-1]
 	theAlgorithm(inputFile, outputFile)

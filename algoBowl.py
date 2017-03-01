@@ -80,4 +80,4 @@ def theAlgorithm(inFileName, outFileName):
 	#validate(inFileName, outFileName)
 
 
-theAlgorithm('inputs/input_group1.txt', 'pleaseDearGodWork.txt')
+#theAlgorithm('inputs/input_group1.txt', 'pleaseDearGodWork.txt')
