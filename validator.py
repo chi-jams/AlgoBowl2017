@@ -1,5 +1,6 @@
 
 def validate( problem, solution ):
+    print(problem)
     machineFile = open( problem, 'r' )
     resultsFile = open( solution, 'r' )
 
@@ -49,9 +50,13 @@ def validate( problem, solution ):
     print( str( targetEfficiency ) + " cycles away from theoretical optimal" )
 
 
+    print(machSpeeds)
+
     if( max( machTimes ) == resultTime ):
         print( "Output is valid" )
     else:
+        print(max(machTimes), resultTime)
         print( "Output is invalid!" )
+    print("")
 
 #validate( 'compInputs.txt', 'compInputsOut.txt' )

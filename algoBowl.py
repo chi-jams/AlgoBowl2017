@@ -27,7 +27,8 @@ def theAlgorithm(inFileName, outFileName):
 	machines = firstPass(tasks,machSpeeds)
 
 	with open(outFileName, 'w') as fout:
-		runSpeeds = [machine['runtime']/machine['speed'] for machine in machines]
+		print('\n'.join(str(m) for m in machines))
+		runSpeeds = [float(sum(t['runtime'] for t in machine['tasks']))/float(machine['speed']) for machine in machines]
 		fout.write(str(max(runSpeeds)) + '\n')
 
 		machines.sort(key = lambda m: m['mach_index'])
@@ -35,4 +36,4 @@ def theAlgorithm(inFileName, outFileName):
 
 	validate(inFileName, outFileName)
 
-theAlgorithm('inputs/input_group1.txt', 'pleaseDearGodWork.txt')
+theAlgorithm('inputs/input_group10.txt', 'pleaseDearGodWork.txt')
