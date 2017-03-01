@@ -2,7 +2,7 @@ from firstPass import firstPass
 from output import output
 from validator import validate
 
-inputFile = 'inputs/input_group23.txt'
+inputFile = 'inputs/input_group8.txt'
 fin = open( inputFile, 'r' )
 
 numTasks = eval( fin.readline() )
