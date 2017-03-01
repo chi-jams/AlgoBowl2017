@@ -57,7 +57,7 @@ def theAlgorithm(inFileName, outFileName):
 			print("Error! Too many machines! " + str(numMachines))
 
 		tasks = [int(t) for t in fin.readline().rstrip().split( ' ' )]
-		tasks.sort()
+		#tasks.sort()
 
 
 		machSpeeds = [int(m) for m in fin.readline().rstrip().split( ' ' ) ]
@@ -75,6 +75,6 @@ def theAlgorithm(inFileName, outFileName):
 		fout.write(str(max(runSpeeds)) + '\n')
 
 		machines.sort(key = lambda m: m['mach_index'])
-		[fout.write(' '.join([str(t) for t in m['tasks']]) + '\n') for m in machines]
+		[fout.write(' '.join([str(t['runtime']) for t in m['task_indexes']]) + '\n') for m in machines]
 
 	#validate(inFileName, outFileName)

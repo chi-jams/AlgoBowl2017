@@ -7,10 +7,12 @@ def firstPass( tasks, machSpeeds ):
     machines = [{'mach_index' : i, 'max_runtime' : w, 'speed' : machSpeeds[i], 'tasks' : [], 'runtime' : 0} for i,w in enumerate(idealMachWeights)]
     machines.sort(key = lambda m: m['speed'])
 
+    tasks = [{'runtime' : r, 'index' : i} for i,r in enumerate(tasks)]
+
     for i in reversed(range(len(machines))):
         if i == 0:
             machines[i]['tasks'] = tasks
-            machines[i]['runtime'] = sum(tasks)
+            machines[i]['runtime'] = sum(t['runtime'] for t in tasks)
         else:
             while machines[i]['runtime'] < machines[i]['max_runtime']:
                 if not tasks:
@@ -18,6 +20,6 @@ def firstPass( tasks, machSpeeds ):
 
                 t_task = tasks.pop()
                 machines[i]['tasks'].append(t_task)
-                machines[i]['runtime'] += t_task
+                machines[i]['runtime'] += t_task['runtime']
    
     return machines
