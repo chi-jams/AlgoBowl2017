@@ -32,6 +32,7 @@ def validate( problem, solution ):
             totalLoad += tasks[task - 1]
         machTimes.append( totalLoad / machSpeeds[i] )
 
+    '''
     timeWasted = 0
     maxTime = max( machTimes )
     for time in machTimes:
@@ -47,11 +48,13 @@ def validate( problem, solution ):
         #print( idealLoads[i], machTimes[i] * machSpeeds[i] )
         targetEfficiency += abs( idealLoads[i] - ( machTimes[i] * machSpeeds[i] ) )
     print( str( targetEfficiency ) + " cycles away from theoretical optimal" )
+    '''
 
-
-    if( max( machTimes ) == resultTime ):
-        print( "Output is valid" )
-    else:
+    if( max( machTimes ) != resultTime ):
         print( "Output is invalid!" )
+        print( max( machTimes ), resultTime )
 
-#validate( 'compInputs.txt', 'compInputsOut.txt' )
+for i in range( 1, 23 ):
+
+    print( "Task " + str(i) + ":" )
+    validate( "compInputs.txt", "other groups/output_from_" + str(i) + "_to_3.txt" )
